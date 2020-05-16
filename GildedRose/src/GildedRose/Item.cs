@@ -1,17 +1,25 @@
+using System.Diagnostics;
+
 namespace GildedRose
 {
     public class Item
     {
         public static Item CreateItem(string name, int sellIn, int quality)
         {
-            return new Item(name, sellIn, quality);
+            switch(name){
+                case "Aged Brie":
+                    return new AgedBrie(sellIn, quality);
+                default:
+                return new Item(name, sellIn, quality);
+            }
+            
         }
 
         public string Name { get; set; }
         public int SellIn { get; set; }
         public int Quality { get; set; }
 
-        private Item(string name, int sellIn, int quality)
+        protected Item(string name, int sellIn, int quality)
         {
             Name = name;
             SellIn = sellIn;
@@ -88,5 +96,11 @@ namespace GildedRose
             }
         }
     }
-    
+
+    class AgedBrie : Item
+    {
+        protected internal AgedBrie(int sellIn, int quality) : base("Aged Brie", sellIn, quality)
+        {
+        }
+    }
 }
