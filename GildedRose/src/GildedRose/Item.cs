@@ -49,17 +49,6 @@ namespace GildedRose
     }
 
 
-    class Sulfuras : Item
-    {
-        protected internal Sulfuras(int sellIn, int quality) : base("Sulfuras, Hand of Ragnaros", sellIn, quality)
-        {
-        }
-
-        public override void UpdateItem()
-        {
-        }
-    }
-
     class AgedBrie : Item
     {
         protected internal AgedBrie(int sellIn, int quality) : base("Aged Brie", sellIn, quality)
