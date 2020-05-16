@@ -1,5 +1,3 @@
-using System.Diagnostics;
-
 namespace GildedRose
 {
     public class Item
@@ -10,6 +8,7 @@ namespace GildedRose
             {
                 "Aged Brie" => new AgedBrie(sellIn, quality),
                 "Sulfuras, Hand of Ragnaros" => new Sulfuras(sellIn, quality),
+                "Backstage passes to a TAFKAL80ETC concert" => new BackstagePass(sellIn, quality),
                 _ => new Item(name, sellIn, quality)
             };
         }
@@ -32,86 +31,90 @@ namespace GildedRose
 
         public virtual void UpdateItem()
         {
-            switch (Name)
+            if (Quality > 0)
             {
-                case "Backstage passes to a TAFKAL80ETC concert":
-                {
-                    if (Quality < 50)
-                    {
-                        Quality = Quality + 1;
-
-
-                        if (SellIn < 11 && Quality < 50)
-                        {
-                            Quality = Quality + 1;
-                        }
-
-                        if (SellIn < 6 && Quality < 50)
-                        {
-                            Quality = Quality + 1;
-                        }
-                    }
-                }
-
-                    SellIn = SellIn - 1;
-
-                    if (SellIn < 0)
-                    {
-                        Quality = Quality - Quality;
-                    }
-
-                    break;
-                default:
-                    if (Quality > 0)
-                    {
-                        Quality = Quality - 1;
-                    }
-
-                    SellIn = SellIn - 1;
-
-                    if (SellIn < 0)
-                    {
-                        if (Quality > 0)
-                        {
-                            Quality = Quality - 1;
-                        }
-                    }
-                    break;
-            }
-        }
-    }
-
-    class Sulfuras : Item
-    {
-        protected internal Sulfuras(int sellIn, int quality) : base("Sulfuras, Hand of Ragnaros", sellIn, quality)
-        {
-        }
-
-        public override void UpdateItem()
-        {
-        }
-    }
-
-    class AgedBrie : Item
-    {
-        protected internal AgedBrie(int sellIn, int quality) : base("Aged Brie", sellIn, quality)
-        {
-        }
-
-        public override void UpdateItem()
-        {
-            if (Quality < 50)
-            {
-                Quality = Quality + 1;
+                Quality = Quality - 1;
             }
 
             SellIn = SellIn - 1;
 
-            if (SellIn < 0 && Quality < 50)
+            if (SellIn < 0)
             {
-                Quality = Quality + 1;
+                if (Quality > 0)
+                {
+                    Quality = Quality - 1;
+                }
+            }
+        }
+
+        class BackstagePass : Item
+        {
+            protected internal BackstagePass(int sellIn, int quality) : base(
+                "Backstage passes to a TAFKAL80ETC concert", sellIn,
+                quality)
+            {
             }
 
+            public override void UpdateItem()
+            {
+                if (Quality < 50)
+                {
+                    Quality = Quality + 1;
+
+
+                    if (SellIn < 11 && Quality < 50)
+                    {
+                        Quality = Quality + 1;
+                    }
+
+                    if (SellIn < 6 && Quality < 50)
+                    {
+                        Quality = Quality + 1;
+                    }
+                }
+
+
+                SellIn = SellIn - 1;
+
+                if (SellIn < 0)
+                {
+                    Quality = Quality - Quality;
+                }
+            }
+        }
+
+
+        class Sulfuras : Item
+        {
+            protected internal Sulfuras(int sellIn, int quality) : base("Sulfuras, Hand of Ragnaros", sellIn, quality)
+            {
+            }
+
+            public override void UpdateItem()
+            {
+            }
+        }
+
+        class AgedBrie : Item
+        {
+            protected internal AgedBrie(int sellIn, int quality) : base("Aged Brie", sellIn, quality)
+            {
+            }
+
+            public override void UpdateItem()
+            {
+                if (Quality < 50)
+                {
+                    Quality = Quality + 1;
+                }
+
+                SellIn = SellIn - 1;
+
+                if (SellIn < 0 && Quality < 50)
+                {
+                    Quality = Quality + 1;
+                }
+            }
         }
     }
 }
