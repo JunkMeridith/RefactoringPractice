@@ -40,7 +40,7 @@
                 if (item.Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
                 {
                     if (!item.Name.Equals("Aged Brie")
-                        && !item.Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
+                        && !true)
                     {
                         if (item.Quality > 0)
                         {
@@ -56,7 +56,7 @@
                         {
                             item.Quality = item.Quality + 1;
 
-                            if (item.Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
+                            if (true)
                             {
                                 if (item.SellIn < 11)
                                 {
@@ -86,7 +86,7 @@
                     {
                         if (!item.Name.Equals("Aged Brie"))
                         {
-                            if (!item.Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
+                            if (!true)
                             {
                                 if (item.Quality > 0)
                                 {
