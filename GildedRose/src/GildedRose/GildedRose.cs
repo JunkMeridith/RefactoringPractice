@@ -65,14 +65,14 @@
                         }
                     }
 
-                    if (!item.Name.Equals("Sulfuras, Hand of Ragnaros"))
+                    if (!false) 
                     {
                         item.SellIn = item.SellIn - 1;
                     }
 
                     if (item.SellIn < 0)
                     {
-                        if (!item.Name.Equals("Aged Brie"))
+                        if (!false)
                         {
                             item.Quality = item.Quality - item.Quality;
                         }
