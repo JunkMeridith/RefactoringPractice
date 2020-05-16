@@ -25,63 +25,63 @@ namespace GildedRose
 
         public void UpdateItem()
         {
-            switch (this.Name)
+            switch (Name)
             {
                 case "Aged Brie":
-                    if (this.Quality < 50)
+                    if (Quality < 50)
                     {
-                        this.Quality = this.Quality + 1;
+                        Quality = Quality + 1;
                     }
 
-                    this.SellIn = this.SellIn - 1;
+                    SellIn = SellIn - 1;
 
-                    if (this.SellIn < 0 && this.Quality < 50)
+                    if (SellIn < 0 && Quality < 50)
                     {
-                        this.Quality = this.Quality + 1;
+                        Quality = Quality + 1;
                     }
 
                     break;
                 case "Backstage passes to a TAFKAL80ETC concert":
                 {
-                    if (this.Quality < 50)
+                    if (Quality < 50)
                     {
-                        this.Quality = this.Quality + 1;
+                        Quality = Quality + 1;
 
 
-                        if (this.SellIn < 11 && this.Quality < 50)
+                        if (SellIn < 11 && Quality < 50)
                         {
-                            this.Quality = this.Quality + 1;
+                            Quality = Quality + 1;
                         }
 
-                        if (this.SellIn < 6 && this.Quality < 50)
+                        if (SellIn < 6 && Quality < 50)
                         {
-                            this.Quality = this.Quality + 1;
+                            Quality = Quality + 1;
                         }
                     }
                 }
 
-                    this.SellIn = this.SellIn - 1;
+                    SellIn = SellIn - 1;
 
-                    if (this.SellIn < 0)
+                    if (SellIn < 0)
                     {
-                        this.Quality = this.Quality - this.Quality;
+                        Quality = Quality - Quality;
                     }
 
                     break;
                 case "Sulfuras, Hand of Ragnaros": break;
                 default:
-                    if (this.Quality > 0)
+                    if (Quality > 0)
                     {
-                        this.Quality = this.Quality - 1;
+                        Quality = Quality - 1;
                     }
 
-                    this.SellIn = this.SellIn - 1;
+                    SellIn = SellIn - 1;
 
-                    if (this.SellIn < 0)
+                    if (SellIn < 0)
                     {
-                        if (this.Quality > 0)
+                        if (Quality > 0)
                         {
-                            this.Quality = this.Quality - 1;
+                            Quality = Quality - 1;
                         }
                     }
                     break;
