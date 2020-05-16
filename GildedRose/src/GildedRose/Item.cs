@@ -13,9 +13,9 @@ namespace GildedRose
             };
         }
 
-        public string Name { get; set; }
-        public int SellIn { get; set; }
-        public int Quality { get; set; }
+        private string Name { get; set; }
+        protected int SellIn { get; set; }
+        protected int Quality { get; set; }
 
         protected Item(string name, int sellIn, int quality)
         {

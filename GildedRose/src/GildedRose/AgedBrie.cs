@@ -1,6 +1,6 @@
 namespace GildedRose
 {
-    class AgedBrie : Item
+    internal class AgedBrie : Item
     {
         protected internal AgedBrie(int sellIn, int quality) : base("Aged Brie", sellIn, quality)
         {
