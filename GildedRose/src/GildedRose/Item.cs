@@ -46,74 +46,38 @@ namespace GildedRose
                 }
             }
         }
+    }
 
-        class BackstagePass : Item
+
+    class Sulfuras : Item
+    {
+        protected internal Sulfuras(int sellIn, int quality) : base("Sulfuras, Hand of Ragnaros", sellIn, quality)
         {
-            protected internal BackstagePass(int sellIn, int quality) : base(
-                "Backstage passes to a TAFKAL80ETC concert", sellIn,
-                quality)
-            {
-            }
-
-            public override void UpdateItem()
-            {
-                if (Quality < 50)
-                {
-                    Quality = Quality + 1;
-
-
-                    if (SellIn < 11 && Quality < 50)
-                    {
-                        Quality = Quality + 1;
-                    }
-
-                    if (SellIn < 6 && Quality < 50)
-                    {
-                        Quality = Quality + 1;
-                    }
-                }
-
-
-                SellIn = SellIn - 1;
-
-                if (SellIn < 0)
-                {
-                    Quality = Quality - Quality;
-                }
-            }
         }
 
-
-        class Sulfuras : Item
+        public override void UpdateItem()
         {
-            protected internal Sulfuras(int sellIn, int quality) : base("Sulfuras, Hand of Ragnaros", sellIn, quality)
-            {
-            }
+        }
+    }
 
-            public override void UpdateItem()
-            {
-            }
+    class AgedBrie : Item
+    {
+        protected internal AgedBrie(int sellIn, int quality) : base("Aged Brie", sellIn, quality)
+        {
         }
 
-        class AgedBrie : Item
+        public override void UpdateItem()
         {
-            protected internal AgedBrie(int sellIn, int quality) : base("Aged Brie", sellIn, quality)
+            if (Quality < 50)
             {
+                Quality = Quality + 1;
             }
 
-            public override void UpdateItem()
+            SellIn = SellIn - 1;
+
+            if (SellIn < 0 && Quality < 50)
             {
-                if (Quality < 50)
-                {
-                    Quality = Quality + 1;
-                }
-
-                SellIn = SellIn - 1;
-
-                if (SellIn < 0 && Quality < 50)
-                {
-                    Quality = Quality + 1;
-                }
+                Quality = Quality + 1;
             }
         }
     }
