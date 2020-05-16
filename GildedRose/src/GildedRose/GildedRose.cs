@@ -39,18 +39,6 @@
             {
                 if (item.Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
                 {
-                    if (!item.Name.Equals("Aged Brie")
-                        && !true)
-                    {
-                        if (item.Quality > 0)
-                        {
-                            if (!item.Name.Equals("Sulfuras, Hand of Ragnaros"))
-                            {
-                                item.Quality = item.Quality - 1;
-                            }
-                        }
-                    }
-                    else
                     {
                         if (item.Quality < 50)
                         {
@@ -86,20 +74,7 @@
                     {
                         if (!item.Name.Equals("Aged Brie"))
                         {
-                            if (!true)
-                            {
-                                if (item.Quality > 0)
-                                {
-                                    if (!item.Name.Equals("Sulfuras, Hand of Ragnaros"))
-                                    {
-                                        item.Quality = item.Quality - 1;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                item.Quality = item.Quality - item.Quality;
-                            }
+                            item.Quality = item.Quality - item.Quality;
                         }
                         else
                         {
