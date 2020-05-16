@@ -27,17 +27,29 @@
                     item.Quality = item.Quality + 1;
                 }
 
-                if (true)
-                {
-                    item.SellIn = item.SellIn - 1;
-                }
+
+                item.SellIn = item.SellIn - 1;
 
                 if (item.SellIn < 0 && item.Quality < 50)
                 {
                     item.Quality = item.Quality + 1;
                 }
             }
+            else
+            {
+                if (item.Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
+                {
+                    ShotGun(item);
+                }
+                else
+                {
+                    ShotGun(item);
+                }
+            }
+        }
 
+        private static void ShotGun(Item item)
+        {
             if (!item.Name.Equals("Aged Brie")
                 && !item.Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
             {
