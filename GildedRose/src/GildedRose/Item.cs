@@ -13,7 +13,7 @@ namespace GildedRose
             };
         }
 
-        private string Name { get; set; }
+        private string Name { get; }
         protected int SellIn { get; set; }
         protected int Quality { get; set; }
 
