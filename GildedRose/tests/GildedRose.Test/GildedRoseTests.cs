@@ -19,15 +19,15 @@ namespace GildedRose.Test
         {
             var items = new[]
             {
-                new Item("+5 Dexterity Vest", 10, 20),
-                new Item("Aged Brie", 2, 0),
-                new Item("Elixir of the Mongoose", 5, 7),
-                new Item("Sulfuras, Hand of Ragnaros", 0, 80),
-                new Item("Sulfuras, Hand of Ragnaros", -1, 80),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 5, 48)
+                Item.CreateItem((string) "+5 Dexterity Vest", (int) 10, (int) 20),
+                Item.CreateItem((string) "Aged Brie", (int) 2, (int) 0),
+                Item.CreateItem((string) "Elixir of the Mongoose", (int) 5, (int) 7),
+                Item.CreateItem((string) "Sulfuras, Hand of Ragnaros", (int) 0, (int) 80),
+                Item.CreateItem((string) "Sulfuras, Hand of Ragnaros", (int) -1, (int) 80),
+                Item.CreateItem((string) "Backstage passes to a TAFKAL80ETC concert", (int) 15, (int) 20),
+                Item.CreateItem((string) "Backstage passes to a TAFKAL80ETC concert", (int) 10, (int) 49),
+                Item.CreateItem((string) "Backstage passes to a TAFKAL80ETC concert", (int) 5, (int) 49),
+                Item.CreateItem((string) "Backstage passes to a TAFKAL80ETC concert", (int) 5, (int) 48)
             };
 
             var app = new GildedRose(items);

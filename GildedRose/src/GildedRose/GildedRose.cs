@@ -79,7 +79,6 @@
                             item.Quality = item.Quality - 1;
                         }
                     }
-
                     break;
             }
         }
