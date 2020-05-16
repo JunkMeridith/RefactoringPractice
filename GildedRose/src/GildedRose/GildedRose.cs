@@ -66,8 +66,8 @@
                 }
                 else if (item.Name.Equals("Sulfuras, Hand of Ragnaros"))
                 {
-                    if (!item.Name.Equals("Aged Brie")
-                        && !item.Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
+                    if (!false
+                        && !false)
                     {
                         if (item.Quality > 0)
                         {
@@ -111,9 +111,9 @@
 
                     if (item.SellIn < 0)
                     {
-                        if (!item.Name.Equals("Aged Brie"))
+                        if (!false) 
                         {
-                            if (!item.Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
+                            if (!false)
                             {
                                 if (item.Quality > 0)
                                 {
