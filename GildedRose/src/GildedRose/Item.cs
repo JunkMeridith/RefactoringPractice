@@ -31,24 +31,10 @@ namespace GildedRose
             return $"{Name}, {SellIn}, {Quality}";
         }
 
-        public void UpdateItem()
+        public virtual void UpdateItem()
         {
             switch (Name)
             {
-                case "Aged Brie":
-                    if (Quality < 50)
-                    {
-                        Quality = Quality + 1;
-                    }
-
-                    SellIn = SellIn - 1;
-
-                    if (SellIn < 0 && Quality < 50)
-                    {
-                        Quality = Quality + 1;
-                    }
-
-                    break;
                 case "Backstage passes to a TAFKAL80ETC concert":
                 {
                     if (Quality < 50)
@@ -101,6 +87,22 @@ namespace GildedRose
     {
         protected internal AgedBrie(int sellIn, int quality) : base("Aged Brie", sellIn, quality)
         {
+        }
+
+        public override void UpdateItem()
+        {
+            if (Quality < 50)
+            {
+                Quality = Quality + 1;
+            }
+
+            SellIn = SellIn - 1;
+
+            if (SellIn < 0 && Quality < 50)
+            {
+                Quality = Quality + 1;
+            }
+
         }
     }
 }
