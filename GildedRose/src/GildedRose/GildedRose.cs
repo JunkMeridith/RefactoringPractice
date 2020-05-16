@@ -2,7 +2,7 @@
 {
     public class GildedRose
     {
-        public Item[] Items { get; set; }
+        public Item[] Items { get; }
 
         public GildedRose(Item[] items)
         {
