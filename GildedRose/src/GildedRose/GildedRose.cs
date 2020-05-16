@@ -20,6 +20,16 @@
 
         private static void UpdateItem(Item item)
         {
+            if (item.Name.Equals("Aged Brie"))
+            {
+                ShotGun(item);
+            }
+
+            ShotGun(item);
+        }
+
+        private static void ShotGun(Item item)
+        {
             if (!item.Name.Equals("Aged Brie")
                 && !item.Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
             {
