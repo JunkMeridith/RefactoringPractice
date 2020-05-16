@@ -6,13 +6,12 @@ namespace GildedRose
     {
         public static Item CreateItem(string name, int sellIn, int quality)
         {
-            switch(name){
-                case "Aged Brie":
-                    return new AgedBrie(sellIn, quality);
-                default:
-                return new Item(name, sellIn, quality);
-            }
-            
+            return name switch
+            {
+                "Aged Brie" => new AgedBrie(sellIn, quality),
+                "Sulfuras, Hand of Ragnaros" => new Sulfuras(sellIn, quality),
+                _ => new Item(name, sellIn, quality)
+            };
         }
 
         public string Name { get; set; }
@@ -62,7 +61,6 @@ namespace GildedRose
                     }
 
                     break;
-                case "Sulfuras, Hand of Ragnaros": break;
                 default:
                     if (Quality > 0)
                     {
@@ -80,6 +78,17 @@ namespace GildedRose
                     }
                     break;
             }
+        }
+    }
+
+    class Sulfuras : Item
+    {
+        protected internal Sulfuras(int sellIn, int quality) : base("Sulfuras, Hand of Ragnaros", sellIn, quality)
+        {
+        }
+
+        public override void UpdateItem()
+        {
         }
     }
 
