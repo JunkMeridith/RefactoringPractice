@@ -20,42 +20,40 @@
 
         private static void UpdateItem(Item item)
         {
-            if (item.Name.Equals("Aged Brie"))
+            switch (item.Name)
             {
-                if (item.Quality < 50)
-                {
-                    item.Quality = item.Quality + 1;
-                }
-
-
-                item.SellIn = item.SellIn - 1;
-
-                if (item.SellIn < 0 && item.Quality < 50)
-                {
-                    item.Quality = item.Quality + 1;
-                }
-            }
-            else
-            {
-                if (item.Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
-                {
+                case "Aged Brie":
+                    if (item.Quality < 50)
                     {
-                        if (item.Quality < 50)
+                        item.Quality = item.Quality + 1;
+                    }
+
+                    item.SellIn = item.SellIn - 1;
+
+                    if (item.SellIn < 0 && item.Quality < 50)
+                    {
+                        item.Quality = item.Quality + 1;
+                    }
+
+                    break;
+                case "Backstage passes to a TAFKAL80ETC concert":
+                {
+                    if (item.Quality < 50)
+                    {
+                        item.Quality = item.Quality + 1;
+
+
+                        if (item.SellIn < 11 && item.Quality < 50)
                         {
                             item.Quality = item.Quality + 1;
+                        }
 
-
-                            if (item.SellIn < 11 && item.Quality < 50)
-                            {
-                                item.Quality = item.Quality + 1;
-                            }
-
-                            if (item.SellIn < 6 && item.Quality < 50)
-                            {
-                                item.Quality = item.Quality + 1;
-                            }
+                        if (item.SellIn < 6 && item.Quality < 50)
+                        {
+                            item.Quality = item.Quality + 1;
                         }
                     }
+                }
 
                     item.SellIn = item.SellIn - 1;
 
@@ -63,12 +61,10 @@
                     {
                         item.Quality = item.Quality - item.Quality;
                     }
-                }
-                else if (item.Name.Equals("Sulfuras, Hand of Ragnaros"))
-                {
-                }
-                else
-                {
+
+                    break;
+                case "Sulfuras, Hand of Ragnaros": break;
+                default:
                     if (item.Quality > 0)
                     {
                         item.Quality = item.Quality - 1;
@@ -83,7 +79,8 @@
                             item.Quality = item.Quality - 1;
                         }
                     }
-                }
+
+                    break;
             }
         }
     }
