@@ -11,9 +11,8 @@
 
         public void UpdateQuality()
         {
-            for (int i = 0; i < Items.Length; i++)
+            foreach (var item in Items)
             {
-                var item = Items[i];
                 item.UpdateItem();
             }
         }
