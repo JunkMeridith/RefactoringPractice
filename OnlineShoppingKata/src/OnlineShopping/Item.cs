@@ -26,5 +26,9 @@ namespace OnlineShopping
             throw new InvalidOperationException("missing from this exercise - shouldn't be called from a unit test");
         }
 
+        public bool IsEvent()
+        {
+            return "EVENT".Equals(Type);
+        }
     }
 }
