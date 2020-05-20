@@ -78,11 +78,7 @@ namespace OnlineShopping
                             }
                         }
                     }
-
-                    foreach (var item in newItems)
-                    {
-                        cart.AddItem(item);
-                    }
+                    
                 }
             }
 
@@ -119,6 +115,11 @@ namespace OnlineShopping
             foreach (var item in cart.GetUnavailableItems())
             {
                 weight -= item.Weight;
+            }
+            
+            foreach (var item in newItems)
+            {
+                cart.AddItem(item);
             }
 
             return newItems;
