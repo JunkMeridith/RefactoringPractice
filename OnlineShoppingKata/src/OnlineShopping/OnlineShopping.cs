@@ -107,14 +107,20 @@ namespace OnlineShopping
                 }
             }
 
-            long weight = cart.getItems().Sum(x => x.Weight);
-            weight = cart.GetUnavailableItems().Aggregate(weight, (current, item) => current - item.Weight);
+            var weight = SetWeight(cart);
 
             foreach (var item in newItems)
             {
                 cart.AddItem(item);
             }
 
+            return weight;
+        }
+
+        private static long SetWeight(Cart cart)
+        {
+            long weight = cart.getItems().Sum(x => x.Weight);
+            weight = cart.GetUnavailableItems().Aggregate(weight, (current, item) => current - item.Weight);
             return weight;
         }
 
