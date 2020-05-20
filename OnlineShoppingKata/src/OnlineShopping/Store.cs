@@ -23,22 +23,12 @@ namespace OnlineShopping
             _itemsInStock.Add(storeEvent.Name, storeEvent);
         }
 
-        public void RemoveStockedItems(params Item[] items) {
-            foreach (var item in items) {
-                _itemsInStock.Remove(item.Name);
-            }
-        }
-
         public bool HasItem(Item item) {
             return _itemsInStock.ContainsKey(item.Name);
         }
 
         public Item GetItem(string name) {
             return _itemsInStock[name];
-        }
-
-        public bool HasDroneDelivery() {
-            return _droneDelivery;
         }
 
         public override string ToString() {
@@ -50,10 +40,6 @@ namespace OnlineShopping
 
         public void SaveToDatabase() {
             throw new InvalidOperationException("missing from this exercise - shouldn't be called from a unit test");
-        }
-
-        public void SetDroneDelivery(bool b) {
-            _droneDelivery = b;
         }
     }
 }
