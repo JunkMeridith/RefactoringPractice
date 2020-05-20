@@ -33,6 +33,7 @@ namespace OnlineShopping
                         }
                     }
                 }
+
                 if (deliveryInformation != null)
                 {
                     deliveryInformation.Type = "SHIPPING";
@@ -45,7 +46,8 @@ namespace OnlineShopping
                 {
                     var newItems = new List<Item>();
                     long weight = 0;
-                    foreach (var item in cart.getItems()) {
+                    foreach (var item in cart.getItems())
+                    {
                         if ("EVENT".Equals(item.Type))
                         {
                             if (storeToSwitchTo.HasItem(item))
@@ -62,9 +64,12 @@ namespace OnlineShopping
                         {
                             cart.MarkAsUnavailable(item);
                         }
+
                         weight += item.Weight;
                     }
-                    foreach (var item in cart.GetUnavailableItems()) {
+
+                    foreach (var item in cart.GetUnavailableItems())
+                    {
                         weight -= item.Weight;
                     }
 
@@ -100,11 +105,14 @@ namespace OnlineShopping
                             }
                         }
                     }
-                    foreach (var item in newItems) {
+
+                    foreach (var item in newItems)
+                    {
                         cart.AddItem(item);
                     }
                 }
             }
+
             _session.Put("STORE", storeToSwitchTo);
             _session.SaveAll();
         }
