@@ -96,17 +96,10 @@ namespace OnlineShopping
             long weight = 0;
             foreach (var item in cart.getItems())
             {
-                if ("EVENT".Equals(item.Type))
+                if ("EVENT".Equals(item.Type) && storeToSwitchTo.HasItem(item))
                 {
-                    if (!storeToSwitchTo.HasItem(item))
-                    {
-                        cart.MarkAsUnavailable(item);
-                    }
-                    else
-                    {
-                        cart.MarkAsUnavailable(item);
-                        newItems.Add(storeToSwitchTo.GetItem(item.Name));
-                    }
+                    cart.MarkAsUnavailable(item);
+                    newItems.Add(storeToSwitchTo.GetItem(item.Name));
                 }
                 else if (!storeToSwitchTo.HasItem(item))
                 {
@@ -120,7 +113,7 @@ namespace OnlineShopping
             {
                 weight -= item.Weight;
             }
-            
+
             foreach (var item in newItems)
             {
                 cart.AddItem(item);
