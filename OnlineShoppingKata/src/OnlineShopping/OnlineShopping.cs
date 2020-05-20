@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OnlineShopping
 {
@@ -93,7 +94,6 @@ namespace OnlineShopping
         private static long setWeightAndAvailability(Store storeToSwitchTo, Cart cart)
         {
             var newItems = new List<Item>();
-            long weight = 0;
             foreach (var item in cart.getItems())
             {
                 if ("EVENT".Equals(item.Type) && storeToSwitchTo.HasItem(item))
@@ -105,14 +105,10 @@ namespace OnlineShopping
                 {
                     cart.MarkAsUnavailable(item);
                 }
-
-                weight += item.Weight;
             }
 
-            foreach (var item in cart.GetUnavailableItems())
-            {
-                weight -= item.Weight;
-            }
+            long weight = cart.getItems().Sum(x => x.Weight);
+            weight = cart.GetUnavailableItems().Aggregate(weight, (current, item) => current - item.Weight);
 
             foreach (var item in newItems)
             {
