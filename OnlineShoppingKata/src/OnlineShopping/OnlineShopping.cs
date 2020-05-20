@@ -46,44 +46,48 @@ namespace OnlineShopping
                 {
                     var weight = setWeightAndAvailability(storeToSwitchTo, cart);
 
-                    var currentStore = (Store) _session.Get("STORE");
-                    if (deliveryInformation != null
-                        && deliveryInformation.Type != null
-                        && "HOME_DELIVERY".Equals(deliveryInformation.Type)
-                        && deliveryInformation.DeliveryAddress != null)
-                    {
-                        if (!((LocationService) _session.Get("LOCATION_SERVICE")).IsWithinDeliveryRange(storeToSwitchTo,
-                            deliveryInformation.DeliveryAddress))
-                        {
-                            deliveryInformation.Type = "PICKUP";
-                            deliveryInformation.SetPickupLocation(currentStore);
-                        }
-                        else
-                        {
-                            deliveryInformation.SetTotalWeight(weight);
-                            deliveryInformation.SetPickupLocation(storeToSwitchTo);
-                        }
-                    }
-                    else
-                    {
-                        if (deliveryInformation != null
-                            && deliveryInformation.DeliveryAddress != null)
-                        {
-                            if (((LocationService) _session.Get("LOCATION_SERVICE")).IsWithinDeliveryRange(
-                                storeToSwitchTo, deliveryInformation.DeliveryAddress))
-                            {
-                                deliveryInformation.Type = "HOME_DELIVERY";
-                                deliveryInformation.SetTotalWeight(weight);
-                                deliveryInformation.SetPickupLocation(storeToSwitchTo);
-                            }
-                        }
-                    }
-                    
+                    SetDelivery(storeToSwitchTo, deliveryInformation, weight);
                 }
             }
 
             _session.Put("STORE", storeToSwitchTo);
             _session.SaveAll();
+        }
+
+        private void SetDelivery(Store storeToSwitchTo, DeliveryInformation deliveryInformation, long weight)
+        {
+            var currentStore = (Store) _session.Get("STORE");
+            if (deliveryInformation != null
+                && deliveryInformation.Type != null
+                && "HOME_DELIVERY".Equals(deliveryInformation.Type)
+                && deliveryInformation.DeliveryAddress != null)
+            {
+                if (!((LocationService) _session.Get("LOCATION_SERVICE")).IsWithinDeliveryRange(storeToSwitchTo,
+                    deliveryInformation.DeliveryAddress))
+                {
+                    deliveryInformation.Type = "PICKUP";
+                    deliveryInformation.SetPickupLocation(currentStore);
+                }
+                else
+                {
+                    deliveryInformation.SetTotalWeight(weight);
+                    deliveryInformation.SetPickupLocation(storeToSwitchTo);
+                }
+            }
+            else
+            {
+                if (deliveryInformation != null
+                    && deliveryInformation.DeliveryAddress != null)
+                {
+                    if (((LocationService) _session.Get("LOCATION_SERVICE")).IsWithinDeliveryRange(
+                        storeToSwitchTo, deliveryInformation.DeliveryAddress))
+                    {
+                        deliveryInformation.Type = "HOME_DELIVERY";
+                        deliveryInformation.SetTotalWeight(weight);
+                        deliveryInformation.SetPickupLocation(storeToSwitchTo);
+                    }
+                }
+            }
         }
 
         private static long setWeightAndAvailability(Store storeToSwitchTo, Cart cart)
