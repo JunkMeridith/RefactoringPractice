@@ -98,14 +98,14 @@ namespace OnlineShopping
             {
                 if ("EVENT".Equals(item.Type))
                 {
-                    if (storeToSwitchTo.HasItem(item))
+                    if (!storeToSwitchTo.HasItem(item))
                     {
                         cart.MarkAsUnavailable(item);
-                        newItems.Add(storeToSwitchTo.GetItem(item.Name));
                     }
                     else
                     {
                         cart.MarkAsUnavailable(item);
+                        newItems.Add(storeToSwitchTo.GetItem(item.Name));
                     }
                 }
                 else if (!storeToSwitchTo.HasItem(item))
