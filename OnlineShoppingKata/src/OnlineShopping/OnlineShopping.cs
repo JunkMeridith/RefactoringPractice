@@ -44,34 +44,7 @@ namespace OnlineShopping
             {
                 if (cart != null)
                 {
-                    var newItems = new List<Item>();
-                    long weight = 0;
-                    foreach (var item in cart.getItems())
-                    {
-                        if ("EVENT".Equals(item.Type))
-                        {
-                            if (storeToSwitchTo.HasItem(item))
-                            {
-                                cart.MarkAsUnavailable(item);
-                                newItems.Add(storeToSwitchTo.GetItem(item.Name));
-                            }
-                            else
-                            {
-                                cart.MarkAsUnavailable(item);
-                            }
-                        }
-                        else if (!storeToSwitchTo.HasItem(item))
-                        {
-                            cart.MarkAsUnavailable(item);
-                        }
-
-                        weight += item.Weight;
-                    }
-
-                    foreach (var item in cart.GetUnavailableItems())
-                    {
-                        weight -= item.Weight;
-                    }
+                    var newItems = setWeightAndAvailability(storeToSwitchTo, cart, out var weight);
 
                     var currentStore = (Store) _session.Get("STORE");
                     if (deliveryInformation != null
@@ -115,6 +88,40 @@ namespace OnlineShopping
 
             _session.Put("STORE", storeToSwitchTo);
             _session.SaveAll();
+        }
+
+        private static List<Item> setWeightAndAvailability(Store storeToSwitchTo, Cart cart, out long weight)
+        {
+            var newItems = new List<Item>();
+            weight = 0;
+            foreach (var item in cart.getItems())
+            {
+                if ("EVENT".Equals(item.Type))
+                {
+                    if (storeToSwitchTo.HasItem(item))
+                    {
+                        cart.MarkAsUnavailable(item);
+                        newItems.Add(storeToSwitchTo.GetItem(item.Name));
+                    }
+                    else
+                    {
+                        cart.MarkAsUnavailable(item);
+                    }
+                }
+                else if (!storeToSwitchTo.HasItem(item))
+                {
+                    cart.MarkAsUnavailable(item);
+                }
+
+                weight += item.Weight;
+            }
+
+            foreach (var item in cart.GetUnavailableItems())
+            {
+                weight -= item.Weight;
+            }
+
+            return newItems;
         }
 
 
