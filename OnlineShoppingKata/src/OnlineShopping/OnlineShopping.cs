@@ -44,7 +44,7 @@ namespace OnlineShopping
             {
                 if (cart != null)
                 {
-                    var newItems = setWeightAndAvailability(storeToSwitchTo, cart, out var weight);
+                    var weight = setWeightAndAvailability(storeToSwitchTo, cart);
 
                     var currentStore = (Store) _session.Get("STORE");
                     if (deliveryInformation != null
@@ -86,10 +86,10 @@ namespace OnlineShopping
             _session.SaveAll();
         }
 
-        private static List<Item> setWeightAndAvailability(Store storeToSwitchTo, Cart cart, out long weight)
+        private static long setWeightAndAvailability(Store storeToSwitchTo, Cart cart)
         {
             var newItems = new List<Item>();
-            weight = 0;
+            long weight = 0;
             foreach (var item in cart.getItems())
             {
                 if ("EVENT".Equals(item.Type))
@@ -122,7 +122,7 @@ namespace OnlineShopping
                 cart.AddItem(item);
             }
 
-            return newItems;
+            return weight;
         }
 
 
