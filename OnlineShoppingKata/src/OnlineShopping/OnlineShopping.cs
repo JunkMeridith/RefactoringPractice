@@ -45,8 +45,8 @@ namespace OnlineShopping
             {
                 if (cart != null)
                 {
-                    var weight = setWeightAndAvailability(storeToSwitchTo, cart);
-
+                    SetAvailability(storeToSwitchTo, cart);
+                    var weight = SetWeight(cart);
                     SetDelivery(storeToSwitchTo, deliveryInformation, weight);
                 }
             }
@@ -91,7 +91,7 @@ namespace OnlineShopping
             }
         }
 
-        private static long setWeightAndAvailability(Store storeToSwitchTo, Cart cart)
+        private static void SetAvailability(Store storeToSwitchTo, Cart cart)
         {
             var newItems = new List<Item>();
             foreach (var item in cart.getItems())
@@ -107,14 +107,10 @@ namespace OnlineShopping
                 }
             }
 
-            var weight = SetWeight(cart);
-
             foreach (var item in newItems)
             {
                 cart.AddItem(item);
             }
-
-            return weight;
         }
 
         private static long SetWeight(Cart cart)
