@@ -59,10 +59,9 @@ namespace OnlineShopping
         {
             var currentStore = (Store) _session.Get("STORE");
             var locationService = (LocationService) _session.Get("LOCATION_SERVICE");
-            if (deliveryInformation != null)
+            if (deliveryInformation?.Type != null)
             {
-                if (deliveryInformation.Type != null
-                    && "HOME_DELIVERY".Equals(deliveryInformation.Type)
+                if ("HOME_DELIVERY".Equals(deliveryInformation.Type)
                     && deliveryInformation.DeliveryAddress != null)
                 {
                     if (!locationService.IsWithinDeliveryRange(storeToSwitchTo,
@@ -79,8 +78,7 @@ namespace OnlineShopping
                 }
                 else
                 {
-                    if (deliveryInformation != null
-                        && deliveryInformation.DeliveryAddress != null)
+                    if (deliveryInformation.DeliveryAddress != null)
                     {
                         if (locationService.IsWithinDeliveryRange(
                             storeToSwitchTo, deliveryInformation.DeliveryAddress))
