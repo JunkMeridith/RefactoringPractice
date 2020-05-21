@@ -61,8 +61,7 @@ namespace OnlineShopping
             var locationService = (LocationService) _session.Get("LOCATION_SERVICE");
             if (deliveryInformation != null)
             {
-                if (deliveryInformation != null
-                    && deliveryInformation.Type != null
+                if (deliveryInformation.Type != null
                     && "HOME_DELIVERY".Equals(deliveryInformation.Type)
                     && deliveryInformation.DeliveryAddress != null)
                 {
