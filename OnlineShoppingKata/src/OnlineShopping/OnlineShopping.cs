@@ -59,35 +59,37 @@ namespace OnlineShopping
         {
             var currentStore = (Store) _session.Get("STORE");
             var locationService = (LocationService) _session.Get("LOCATION_SERVICE");
-            
-            if (deliveryInformation != null
-                && deliveryInformation.Type != null
-                && "HOME_DELIVERY".Equals(deliveryInformation.Type)
-                && deliveryInformation.DeliveryAddress != null)
+            if (deliveryInformation != null)
             {
-                if (!locationService.IsWithinDeliveryRange(storeToSwitchTo,
-                    deliveryInformation.DeliveryAddress))
+                if (deliveryInformation != null
+                    && deliveryInformation.Type != null
+                    && "HOME_DELIVERY".Equals(deliveryInformation.Type)
+                    && deliveryInformation.DeliveryAddress != null)
                 {
-                    deliveryInformation.Type = "PICKUP";
-                    deliveryInformation.SetPickupLocation(currentStore);
+                    if (!locationService.IsWithinDeliveryRange(storeToSwitchTo,
+                        deliveryInformation.DeliveryAddress))
+                    {
+                        deliveryInformation.Type = "PICKUP";
+                        deliveryInformation.SetPickupLocation(currentStore);
+                    }
+                    else
+                    {
+                        deliveryInformation.SetTotalWeight(weight);
+                        deliveryInformation.SetPickupLocation(storeToSwitchTo);
+                    }
                 }
                 else
                 {
-                    deliveryInformation.SetTotalWeight(weight);
-                    deliveryInformation.SetPickupLocation(storeToSwitchTo);
-                }
-            }
-            else
-            {
-                if (deliveryInformation != null
-                    && deliveryInformation.DeliveryAddress != null)
-                {
-                    if (locationService.IsWithinDeliveryRange(
-                        storeToSwitchTo, deliveryInformation.DeliveryAddress))
+                    if (deliveryInformation != null
+                        && deliveryInformation.DeliveryAddress != null)
                     {
-                        deliveryInformation.Type = "HOME_DELIVERY";
-                        deliveryInformation.SetTotalWeight(weight);
-                        deliveryInformation.SetPickupLocation(storeToSwitchTo);
+                        if (locationService.IsWithinDeliveryRange(
+                            storeToSwitchTo, deliveryInformation.DeliveryAddress))
+                        {
+                            deliveryInformation.Type = "HOME_DELIVERY";
+                            deliveryInformation.SetTotalWeight(weight);
+                            deliveryInformation.SetPickupLocation(storeToSwitchTo);
+                        }
                     }
                 }
             }
