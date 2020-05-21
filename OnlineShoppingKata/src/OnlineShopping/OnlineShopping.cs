@@ -58,12 +58,14 @@ namespace OnlineShopping
         private void SetDelivery(Store storeToSwitchTo, DeliveryInformation deliveryInformation, long weight)
         {
             var currentStore = (Store) _session.Get("STORE");
+            var locationService = (LocationService) _session.Get("LOCATION_SERVICE");
+            
             if (deliveryInformation != null
                 && deliveryInformation.Type != null
                 && "HOME_DELIVERY".Equals(deliveryInformation.Type)
                 && deliveryInformation.DeliveryAddress != null)
             {
-                if (!((LocationService) _session.Get("LOCATION_SERVICE")).IsWithinDeliveryRange(storeToSwitchTo,
+                if (!locationService.IsWithinDeliveryRange(storeToSwitchTo,
                     deliveryInformation.DeliveryAddress))
                 {
                     deliveryInformation.Type = "PICKUP";
@@ -80,7 +82,7 @@ namespace OnlineShopping
                 if (deliveryInformation != null
                     && deliveryInformation.DeliveryAddress != null)
                 {
-                    if (((LocationService) _session.Get("LOCATION_SERVICE")).IsWithinDeliveryRange(
+                    if (locationService.IsWithinDeliveryRange(
                         storeToSwitchTo, deliveryInformation.DeliveryAddress))
                     {
                         deliveryInformation.Type = "HOME_DELIVERY";
